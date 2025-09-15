@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Portfolio</title>
+  <meta name="description" content="Portfolio of Baby — Web Developer & Designer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.7);
+      --accent-1: #7c3aed; /* purple */
+      --accent-2: #06b6d4; /* teal */
+      --glass: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.06);
+      --text: #e6eef8;
+      --shadow: 0 10px 30px rgba(2,6,23,0.6);
+    }
+
+    .light{
+      --bg: #f7fbff;
+      --card: rgba(2,6,23,0.03);
+      --muted: rgba(2,6,23,0.65);
+      --accent-1: #4c51bf;
+      --accent-2: #0ea5a4;
+      --glass: rgba(2,6,23,0.03);
+      --glass-border: rgba(2,6,23,0.06);
+      --text: #06101a;
+      --shadow: 0 10px 30px rgba(2,6,23,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent),
+                  radial-gradient(900px 450px at 90% 80%, rgba(6,182,212,0.08), transparent),
+                  var(--bg);
+      color:var(--text);
+      transition:background 0.5s ease, color 0.5s ease;
+      padding:32px;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:20px;box-shadow:var(--shadow)}
+    .name{font-weight:800}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:600}
+    nav a:hover{transform:translateY(-3px)}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-bottom:36px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;padding:22px;box-shadow:var(--shadow);border:1px solid var(--glass-border)}
+    .intro h1{margin:0;font-size:36px;line-height:1.05}
+    .intro p{color:var(--muted);margin-top:8px}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border:none;padding:10px 14px;border-radius:10px;color:white;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.18);transition:transform .18s}
+    .btn:active{transform:translateY(1px)}
+    .ghost{background:transparent;border:1px solid var(--glass-border);color:var(--text);}
+
+    .profile{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+    .avatar{width:120px;height:120px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.06), transparent);display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800}
+    .role{color:var(--muted);font-weight:600}
+
+    section{margin-bottom:26px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{padding:8px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--glass-border);font-weight:600}
+
+    .project{display:flex;gap:12px;align-items:center}
+    .proj-thumb{width:86px;height:64px;border-radius:8px;background:linear-gradient(135deg,var(--accent-2),var(--accent-1));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .proj-body h4{margin:0}
+    .proj-body p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+    footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px dashed var(--glass-border);color:var(--muted)}
+
+    .toggle{display:inline-flex;align-items:center;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);padding:6px;border-radius:999px;border:1px solid var(--glass-border)}
+    .toggle button{all:unset;padding:6px;width:36px;height:36px;border-radius:999px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;cursor:pointer}
+
+    .blob{position:fixed;right:-120px;bottom:-120px;width:420px;height:420px;border-radius:50%;filter:blur(48px);opacity:0.22;pointer-events:none;background:conic-gradient(from 180deg at 50% 50%,var(--accent-1),var(--accent-2));transform:translateZ(0)}
+
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.grid-3{grid-template-columns:1fr}header{flex-direction:column;align-items:flex-start;gap:12px}body{padding:18px}}
+
+    .fade-in{animation:fadeIn .9s cubic-bezier(.2,.9,.2,1) both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .tilt:hover{transform:translateY(-8px) rotate(-0.6deg);transition:transform .4s}
+    .underline{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));height:3px;border-radius:99px;width:80px;margin-top:8px}
+    .resume-pill{display:inline-flex;gap:10px;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid var(--glass-border);background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent)}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="fade-in">
+      <div class="brand">
+        <div class="logo">S</div>
+        <div>
+          <div class="name">Savita Biradar</div>
+          <div style="font-size:12px;color:var(--muted)">Web Developer • Designer • Software Developer</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <div class="toggle" title="Toggle theme"><button id="themeToggle">🌙</button></div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="card intro fade-in tilt">
+          <h1>Hey — I'm <span style="background:linear-gradient(90deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">Savita Biradar</span>.<br><span style="font-weight:600">I build playful, practical interfaces</span></h1>
+          <p>Student at Shivaji University, Kolhapur 🎓 BCA Student | 💻 Web Development Learner | 🌐 HTML, CSS, Java, MySQL ,c, c++| ✨ Personal Transformation Journey | 📚 Lifelong LearnerI design and code beautiful, accessible websites and web apps. clean frontend code — HTML, CSS, JS and a pinch of creativity. This portfolio shows projects, experience and ways to reach me.</p>
+
+          <div class="cta">
+            <a class="btn" href="#projects">See Projects</a>
+            <a class="btn ghost" href="#contact">Hire / Contact</a>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+            <div class="resume-pill">
+              <strong>Resume</strong>
+              <a href="#" id="downloadResume" style="text-decoration:none;color:var(--muted);font-weight:700">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card profile fade-in tilt">
+          <div class="avatar">B</div>
+          <div style="font-weight:800">Savita Biradar</div>
+          <div class="role">Frontend Developer & Software Developer</div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <a class="btn" href="#contact">Message</a>
+            <a class="btn ghost" href="#projects">Portfolio</a>
+          </div>
+
+          <div style="margin-top:12px;width:100%">
+            <div style="font-size:12px;color:var(--muted);text-align:left">Quick Info</div>
+            <div style="display:flex;gap:8px;justify-content:space-between;margin-top:8px">
+              <div style="text-align:left">
+                <div style="font-weight:700">Location</div>
+                <div style="font-size:13px;color:var(--muted)">A/p Kundal, Dist: Sangli</div>
+              </div>
+              <div style="text-align:left">
+                <div style="font-weight:700">Email</div>
+                <div style="font-size:13px;color:var(--muted)">savitabiradar9090@example.com</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="card fade-in">
+        <h3 style="margin:0">About me</h3>
+        <div class="underline"></div>
+        <p style="margin-top:10px;color:var(--muted)">I'm a BCA student who loves web development, software, photography and creative design. I build responsive websites with a focus on performance, accessibility and delightful micro-interactions. I enjoy learning new tools and sharing what I learn.</p>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="fade-in">
+        <div class="card">
+          <h3 style="margin:0">Skills</h3>
+          <div style="margin-top:10px" class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">Java Programming</div>
+            <div class="skill">SQL</div>
+            <div class="skill">C</div>
+            <div class="skill">C++</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="fade-in">
+        <div class="card">
+          <h3 style="margin:0">Selected Projects</h3>
+          <div style="margin-top:12px" class="grid-3">
+            <div class="project tilt card" style="padding:12px">
+              <div class="proj-thumb">P1</div>
+              <div class="proj-body"><h4>Portfolio Website</h4><p>A responsive single-page portfolio with theme toggle, animations and contact form.</p></div>
+            </div>
+            <div class="project tilt card" style="padding:12px">
+              <div class="proj-thumb">P2</div>
+              <div class="proj-body"><h4>E-commerce UI</h4><p>Product listing and cart experience prototype built in React with accessible components.</p></div>
+            </div>
+            <div class="project tilt card" style="padding:12px">
+              <div class="proj-thumb">P3</div>
+              <div class="proj-body"><h4>Photography Gallery</h4><p>Animated, filterable gallery showcasing photos and lightbox interactions.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="fade-in">
+        <div class="card">
+          <h3 style="margin:0">Experience & Education</h3>
+          <div style="margin-top:10px;color:var(--muted)">
+       
+            <div style="margin-bottom:8px"><strong>BCA</strong> • Arts, Commerce and Science College Palus (2023 — Present)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="fade-in">
+        <div class="card">
+          <h3 style="margin:0">Contact</h3>
+          <div style="margin-top:10px;color:var(--muted)">Interested in working together? Reach me via email, or connect on LinkedIn.</div>
+          <div style="display:flex;gap:12px;margin-top:12px">
+            <a class="btn" href="mailto:savitabiradar9090@example.com">Email</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/savita-biradar-a8483133a" target="_blank">LinkedIn</a>
+            <a class="btn ghost" href="https://github.com/savitabiradar" target="_blank">GitHub</a>
+          </div>
+
+
+          <form style="margin-top:16px;display:flex;flex-direction:column;gap:10px" onsubmit="handleContact(event)">
+            <input id="name" placeholder="Your name" required style="padding:10px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:var(--text)" />
+            <input id="email" placeholder="enter your emial" required style="padding:10px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:var(--text)" />
+            <textarea id="message" placeholder="write here" required style="padding:12px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:var(--text);min-height:110px"></textarea>
+            <div style="display:flex;gap:8px">
+              <button class="btn" type="submit">Send</button>
+              
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer class="fade-in">
+        <div>© <span id="year"></span> savitabiradar</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <a href="https://www.linkedin.com/" target="_blank" style="text-decoration:none;color:var(--muted)">LinkedIn</a>
+          <a href="https://github.com/savitabiradar" style="text-decoration:none;color:var(--muted)">GitHub</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div class="blob"></div>
+
+  <script>
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const saved = localStorage.getItem('site-theme');
+    if(saved === 'light') body.classList.add('light');
+
+    function setIcon(){
+      themeToggle.textContent = body.classList.contains('light') ? '☀️' : '🌙';
+    }
+    setIcon();
+
+    themeToggle.addEventListener('click', ()=>{
+      body.classList.toggle('light');
+      localStorage.setItem('site-theme', body.classList.contains('light') ? 'light' : 'dark');
+      setIcon();
+    });
+
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      alert(`Thanks ${name}! Message queued — replace with backend service.`);
+      e.target.reset();
+    }
+
+    function fillExample(){
+      document.getElementById('name').value = 'Your Name';
+      document.getElementById('email').value = 'youremail@example.com';
+      document.getElementById('message').value = 'Hi — I love your work. Let\'s connect!';
+    }
+
+    // Resume download (opens actual PDF)
+    document.getElementById('downloadResume').addEventListener('click', (e)=>{
+      e.preventDefault();
+      window.open('cv resume1.pdf', '_blank'); 
+    });
+  </script>
+</body>
+</html>
